@@ -1,6 +1,6 @@
 import React from 'react';
 import GuessInput from '../GuessInput';
-
+import GuessTrack from '../GuessTrack';
 import { sample } from '../../utils';
 import { WORDS } from '../../data';
 
@@ -9,11 +9,28 @@ const answer = sample(WORDS);
 // To make debugging easier, we'll log the solution in the console.
 console.info({ answer });
 
+
+
 function Game() {
-  return <>
-  Put a game here!
-  <GuessInput />
-  </>;
+  
+  const [ guesses, setGuesses ] = React.useState([]);
+  
+  function handleSubmit(guess){
+  
+    const nextGuesses = [
+       ...guesses,
+       guess
+    ];
+    
+    setGuesses(nextGuesses);
+  
+  }
+  return (
+    <>
+      <GuessTrack guesses={guesses} />
+      <GuessInput handleSubmit={handleSubmit} />
+    </>
+  );
 } 
 
 export default Game;
