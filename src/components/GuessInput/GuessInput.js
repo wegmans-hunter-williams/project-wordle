@@ -6,11 +6,16 @@ export default function GuessInput() {
     
     function handleSubmit(e){
         e.preventDefault();
+        
+        setGuess(guess);
         console.log({
             guess
         });
+        setGuess('');
     }
-    
+    /* 
+        @todo refactor minLength validation
+    */
     return (
         <form className="guess-input-wrapper" onSubmit={handleSubmit}>
             <label htmlFor="guess-input">Enter guess:</label>
@@ -18,6 +23,7 @@ export default function GuessInput() {
                 id="guess-input" 
                 type="text"
                 value={guess}
+                minLength={5}
                 maxLength={5}
                 onChange={(e) => {
                     const formattedGuess = e.target.value.toUpperCase();
