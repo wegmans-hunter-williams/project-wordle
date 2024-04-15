@@ -11,7 +11,7 @@ export default function GuessInput() {
         console.log({
             guess
         });
-        setGuess('');
+        
     }
     /* 
         @todo refactor minLength validation
