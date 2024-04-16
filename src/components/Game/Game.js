@@ -10,37 +10,26 @@ const answer = sample(WORDS);
 // To make debugging easier, we'll log the solution in the console.
 console.info({ answer });
 
-
-
 function Game() {
   
-  
-  
   const [ guesses, setGuesses ] = React.useState([]);
-  
-  const [ gameOver, setGameOver ] = React.useState(false);
-  
+  const canGuess = guesses.length < NUM_OF_GUESSES_ALLOWED;
+
   function handleSubmit(guess){
-  
-    if(guesses.length === NUM_OF_GUESSES_ALLOWED) {
-      setGameOver(true);
-    } 
-    else {
+
       const nextGuesses = [
         ...guesses,
         guess
      ];
      setGuesses(nextGuesses);
-     if(answer === guess) setGameOver(true);
-    }
-  
+     
   }
+
   return (
     <>
       <GuessTrack answer={answer} guesses={guesses} />
-      <GuessInput handleSubmit={handleSubmit} />
-      {gameOver && <Banner won={guesses.length < NUM_OF_GUESSES_ALLOWED} answer={answer} numGuesses={guesses.length} />}
-      
+      <GuessInput handleSubmit={handleSubmit} canGuess={canGuess} />
+      <Banner guesses={guesses} answer={answer} canGuess={canGuess}/>
     </>
   );
 } 

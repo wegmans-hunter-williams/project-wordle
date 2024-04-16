@@ -1,12 +1,13 @@
 import React from 'react';
 
-export default function Banner( { won, answer, numGuesses } ) {
+export default function Banner( { guesses, answer, canGuess } ) {
 
-
+    const won = guesses.includes(answer);
+    
     const happyBanner = (
         <div className="happy banner">
             <p>
-                <strong>Congratulations!</strong> Got it in {' '} <strong>{numGuesses} guesses</strong>.
+                <strong>Congratulations!</strong> Got it in {' '} <strong>{guesses.length} guesses</strong>.
             </p>
         </div>
     )
@@ -19,9 +20,8 @@ export default function Banner( { won, answer, numGuesses } ) {
 
     return (
         <>
-        {won 
-        ? happyBanner
-        : sadBanner}
+        {won && happyBanner}
+        {!canGuess && !won && sadBanner}
         </>
     )
     

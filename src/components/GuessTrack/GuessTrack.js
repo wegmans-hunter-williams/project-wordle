@@ -1,20 +1,18 @@
 import React from 'react';
 import Guess from '../Guess';
-//import { range } from '../../utils.js';
 import { NUM_OF_GUESSES_ALLOWED } from '../../constants.js';
 
 export default function GuessTrack( { answer, guesses }) {
     
-    /* 
-        @todo refactor key
-    */
-        const NUM_OF_GUESSES = guesses.length;
-        const emptyRows = Array(NUM_OF_GUESSES_ALLOWED - NUM_OF_GUESSES);
-       
-       const grid = [
+
+    const NUM_OF_GUESSES = guesses.length;
+    const emptyRows = Array(NUM_OF_GUESSES_ALLOWED - NUM_OF_GUESSES);
+    
+    //Create array of guesses, fill with empty indexes for remaining guesses
+    const grid = [
         ...guesses,
         ...emptyRows
-       ];
+    ];
 
     return (
         <div className="guess-results">

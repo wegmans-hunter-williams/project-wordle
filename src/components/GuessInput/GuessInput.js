@@ -1,19 +1,21 @@
 import React from 'react';
 
-export default function GuessInput( { handleSubmit }) {
+export default function GuessInput( { handleSubmit, canGuess }) {
     
     const [ guess, setGuess ] = React.useState('');
     
-    /* 
-        @todo refactor minLength validation
-    */
+
     return (
         <form className="guess-input-wrapper" onSubmit={(e) => {
             e.preventDefault();
-            handleSubmit(guess);
+            if(canGuess){
+                handleSubmit(guess);
+            }
             setGuess('');
         }}>
-            <label htmlFor="guess-input">Enter guess:</label>
+            <label htmlFor="guess-input">
+                { canGuess ?  'Enter guess:' : 'No guesses remaining.'}
+            </label>
             <input 
                 id="guess-input" 
                 type="text"
